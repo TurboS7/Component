@@ -15,13 +15,11 @@ public class MainActivity extends AppCompatActivity {
     }
     /*跳转到四大组件*/
     public void toFourC(View view) {
-        intent = new Intent(getApplication() , MFourCActivity.class);
-        startActivity(intent);
+        startActivity(intent = new Intent(getApplication() , MFourCActivity.class));
     }
     /*存储*/
     public void toSave(View view) {
-        intent = new Intent(getApplication(),MSaveMainActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(getApplication(),MSaveMainActivity.class));
     }
 
 
