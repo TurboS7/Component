@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MFourCActivity">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/btn_MService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:onClick="toServiceActivity"
+            android:background="@color/design_default_color_on_primary"
+            android:text="Service" />
+
+        <Button
+            android:id="@+id/btn_MBroadcastReceiver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:onClick="toBroadcastReceiverActivity"
+            android:background="@color/design_default_color_on_primary"
+            android:text="BroadcastReceiver" />
+
+        <Button
+            android:id="@+id/btn_ContentProvider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:onClick="toContentProviderActivity"
+            android:background="@color/design_default_color_on_primary"
+            android:text="ContentProvider" />
+
+    </LinearLayout>
+
+</LinearLayout>
