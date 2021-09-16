@@ -1,13 +1,16 @@
 package com.example.fourc;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
     private Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,11 +18,13 @@ public class MainActivity extends AppCompatActivity {
     }
     /*跳转到四大组件*/
     public void toFourC(View view) {
-        startActivity(intent = new Intent(getApplication() , MFourCActivity.class));
+        intent = new Intent(getApplication() , MFourCActivity.class);
+        startActivity(intent);
     }
     /*存储*/
     public void toSave(View view) {
-        startActivity(new Intent(getApplication(),MSaveMainActivity.class));
+        intent = new Intent(getApplication(),MSaveMainActivity.class);
+        startActivity(intent);
     }
 
 
