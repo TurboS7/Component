@@ -39,6 +39,15 @@
             android:background="@color/design_default_color_on_primary"
             android:text="ContentProvider" />
 
+        <Button
+            android:id="@+id/btn_SystemContentProvider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:onClick="toSystemContentProviderActivity"
+            android:background="@color/design_default_color_on_primary"
+            android:text="SystemContentProvider" />
+
     </LinearLayout>
 
 </LinearLayout>
