@@ -15,6 +15,7 @@
         <activity android:name=".MFourCActivity" />
         <activity android:name=".MContentProviderActivity" />
         <activity android:name=".MBroadcastReceiverActivity" />
+        <activity android:name=".SystemContentProviderActivity" />
         <activity android:name=".MServiceActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

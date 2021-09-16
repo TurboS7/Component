@@ -25,4 +25,8 @@ public class MFourCActivity extends AppCompatActivity {
     public void toContentProviderActivity(View view) {
         startActivity(new Intent(getApplication() , MContentProviderActivity.class));
     }
+
+    public void toSystemContentProviderActivity(View view) {
+        startActivity(new Intent(getApplication() , SystemContentProviderActivity.class));
+    }
 }
