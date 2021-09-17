@@ -12,16 +12,21 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="用户名"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:inputType="textPersonName" />
     <EditText
-        android:id="@+id/et_upsw"
+        android:id="@+id/et_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="密码"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint="手机号码"
+        android:inputType="phone" />
+    <EditText
+        android:id="@+id/et_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="序号"
+        android:inputType="number"/>
     <Button
         android:id="@+id/button8"
         android:layout_width="match_parent"
