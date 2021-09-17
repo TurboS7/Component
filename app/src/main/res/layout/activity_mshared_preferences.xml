@@ -82,12 +82,13 @@
                 android:id="@+id/et_get"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"/>
+
             <Button
                 android:id="@+id/btn_get"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onGet"
-                android:text="save"/>
+                android:text="get" />
     </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
