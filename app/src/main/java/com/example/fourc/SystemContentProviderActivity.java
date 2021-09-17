@@ -6,10 +6,12 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -54,11 +56,44 @@ public class SystemContentProviderActivity extends AppCompatActivity {
     }
     /*插入数据*/
     public void onInsert(View view) {
+        String name = et_uname.getText().toString();
+        String phone = et_phone.getText().toString();
+        /*创建一个空的ContentValues*/
+        ContentValues values = new ContentValues();
+        /*向ContactsContract.RawContacts.CONTENT_URI中插入一个空值*/
+        /*目的是获取系统返回的rawContactId，以便添加联系人名字和电话的时候使用的是同一个id*/
+        Uri rawContactsUri = resolver.insert(ContactsContract.RawContacts.CONTENT_URI,values);
+        long rawContactId = ContentUris.parseId(rawContactsUri);
+        /**
+         * 1.清空values
+         * 2.设置id
+         * 3.设置内容类型
+         * 4.设置联系人名称
+         */
+        values.clear();
+        values.put(ContactsContract.Data.RAW_CONTACT_ID,rawContactId);
+        values.put(ContactsContract.Data.MIMETYPE,ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE);
+        values.put(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME,name);
+        /*向联系人URI添加联系人姓名*/
+        getContentResolver().insert(ContactsContract.Data.CONTENT_URI,values);
 
+        /*1.清空values*/
+        values.clear();
+        /*2.设置id*/
+        values.put(ContactsContract.Data.RAW_CONTACT_ID, rawContactId);
+        /*3.设置内容类型*/
+        values.put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+        /*4.设置联系人电话*/
+        values.put(ContactsContract.CommonDataKinds.Phone.NUMBER,phone);
+        /*5.设置电话类型*/
+        values.put(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE);
+        /*插入通话*/
+        resolver.insert(ContactsContract.Data.CONTENT_URI , values);
+        showToast("联系人："+name+"-"+phone+"成功存入通讯录中！");
     }
     /*删除数据*/
     public void onDelete(View view) {
-
+        
     }
     /*更新数据*/
     public void onUpdate(View view) {
