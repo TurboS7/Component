@@ -102,7 +102,10 @@ public class SystemContentProviderActivity extends AppCompatActivity {
                 new String[]{String.valueOf(number)});
         System.out.println("number = "+ number);
         System.out.println(result);
+<<<<<<< HEAD
 //        query();
+=======
+>>>>>>> main
     }
     /*更新数据*/
     public void onUpdate(View view) {
@@ -113,11 +116,32 @@ public class SystemContentProviderActivity extends AppCompatActivity {
         int result = resolver.update(ContactsContract.Data.CONTENT_URI, values,
                 ContactsContract.Data.RAW_CONTACT_ID +"=?",new String[]{
                         String.valueOf(et_number.getText().toString())});
+<<<<<<< HEAD
 //        query();
     }
     /*查询数据*/
     public void onQuery(View view) {
     query();
+=======
+    }
+    /*查询数据*/
+    public void onQuery(View view) {
+        /*获取Resolver*/
+        ContentResolver resolver = getContentResolver();
+        String text = null;
+        tv_info.setText("");
+        Cursor cursor = resolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,null,null,null);
+        while (cursor.moveToNext()){
+            String name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+            String number = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            String ID = cursor.getString(cursor.getColumnIndex(ContactsContract.RawContacts._ID));
+            int num = Integer.valueOf(ID)/2;
+            System.out.println("ID"+ID);
+            text  = text+"用户名："+name + "电话号码："+number+"[ID:"+num+"]" +"\n" ;
+            tv_info.setText(text);
+        }
+        cursor.close();
+>>>>>>> main
     }
     /*申请权限的回调*/
     @Override
