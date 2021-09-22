@@ -7,16 +7,18 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.util.Log;
 
 import com.example.fourc.dbutil.MyDBHelper;
 
 public class MyContentProvider extends ContentProvider {
+    private String TAG = "MyContentProvider:";
     private MyDBHelper dbHelper;
     private static final String AUTHORITIES = "com.example.fourc";
     private static final String TABLE_NAME = "person";
-    /*用来存放所有合法的URI的容器*/
+    /*step1:用来存放所有合法的URI的容器*/
     private static UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
-    /*保存合法的URI*/
+    /*step2:保存合法的URI*/
     /*content://com.example.fourc/person  不根据id来操作*/
     /*content://com.example.fourc/person/2  根据id来操作*/
     static {
@@ -25,6 +27,7 @@ public class MyContentProvider extends ContentProvider {
     }
 
     public MyContentProvider() {
+        Log.i(TAG, "MyContentProvider()");
     }
     @Override
     public boolean onCreate() {
@@ -34,38 +37,65 @@ public class MyContentProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        // Implement this to handle requests to delete one or more rows.
-        throw new UnsupportedOperationException("Not yet implemented");
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        switch (matcher.match(uri)){
+            case 0:
+                int d1 = db.delete(TABLE_NAME, null, null);
+                return d1;
+            case 1:
+                int d2 = db.delete(TABLE_NAME, selection, selectionArgs);
+                return d2;
+        }
+        return 0;
     }
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        // TODO: Implement this to handle requests to insert a new row.
-        throw new UnsupportedOperationException("Not yet implemented");
+       SQLiteDatabase db = dbHelper.getWritableDatabase();
+       switch (matcher.match(uri)){
+           case 0:
+               db.insert(TABLE_NAME,null,values);
+               return null;
+           case 1:
+               db.insert(TABLE_NAME,null,values);
+               return null;
+       }
+       return null;
     }
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
-        SQLiteDatabase database = dbHelper.getReadableDatabase();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         switch (matcher.match(uri)){
             case 0:
-                Cursor cursor = database.query(TABLE_NAME,projection,selection,null,null,null);
+                Cursor cursor = db.query(TABLE_NAME,projection,null,null,null,null,null);
                 return cursor;
-                break;
             case 1:
                 long id = ContentUris.parseId(uri);
-                Cursor cursor1 = database.query(TABLE_NAME,projection,"id=?",new String[]{String.valueOf(id)},null, null, null);
+                Cursor cursor1 = db.query(TABLE_NAME,projection,selection,selectionArgs,null,null,null);
+                return cursor1;
+            default:
+                Log.e(TAG, "非法的URI");
+                return null;
         }
-        return null;
+
     }
 
     @Override
     public int update(Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
-        // TODO: Implement this to handle requests to update one or more rows.
-        throw new UnsupportedOperationException("Not yet implemented");
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        switch (matcher.match(uri)){
+            case 0:
+                int res = db.update(TABLE_NAME, values, null, null);
+                return res;
+            case 1:
+                int res1 = db.update(TABLE_NAME, values, null, null);
+                return res1;
+        }
+        return 0;
     }
 
     @Override

@@ -1,8 +1,19 @@
 package com.example.fourc;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.fourc.dbutil.MyDBHelper;
+
+import java.net.URI;
 
 /**
  * 内容提供者的demo
@@ -31,11 +42,69 @@ import androidx.appcompat.app.AppCompatActivity;
  *         最后就是ID（如果没有指定ID，那么表示返回全部）。
  */
 public class MContentProviderActivity extends AppCompatActivity {
-
+    private TextView tv_info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mcontent_provider);
+        initView();/*初始化UI*/
+    }
+    public void initView() {
+        tv_info = findViewById(R.id.tv_info);
+    }
+    /*查询*/
+    public void onQuery1(View view) {
+        /*获取ContentResolver*/
+        ContentResolver resolver = getContentResolver();
+        /*查询出数据*/
+        Uri uri = Uri.parse("content://com.example.fourc/person");
+        Cursor cursor = resolver.query(uri, null, null , null, null);
+        String txt = "";
+        while (cursor.moveToNext()){
+            int _id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            int age = cursor.getInt(2);
+            String text = cursor.getString(3);
+            txt = txt +"\n" +
+                    "_id = "+_id+"\n"+
+                    "name = "+name+"\n"+
+                    "age = "+age+"\n"+
+                    "text = "+text+"\n";
+
+        }
+        tv_info.setText(txt);
+    }
+
+    public void onInstert1(View view) {
+        /*获取ContentResolver*/
+        ContentResolver resolver = getContentResolver();
+        /*插入数据*/
+        Uri uri = Uri.parse("content://com.example.fourc/person");
+        ContentValues values = new ContentValues();
+        values.put("name","tim");
+        values.put("age",12);
+        values.put("info","tim is a boy ");
+        resolver.insert(uri, values);
 
     }
+    public void onDelete1(View view) {
+        ContentResolver resolver = getContentResolver();
+        /*删除数据*/
+        Uri uri = Uri.parse("content://com.example.fourc/person");
+        ContentValues values = new ContentValues();
+        resolver.delete(uri,null,null);
+    }
+    public void onUpdate1(View view) {
+        /*获取ContentResolver*/
+        ContentResolver resolver = getContentResolver();
+        /*插入数据*/
+        Uri uri = Uri.parse("content://com.example.fourc/person");
+        ContentValues values = new ContentValues();
+        values.put("_id",1);
+        values.put("name","tim12");
+        values.put("age",12);
+        values.put("info","tim is a boy ");
+        resolver.update(uri, values,null,null);
+    }
+
 }
