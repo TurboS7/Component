@@ -38,13 +38,17 @@ public class MyContentProvider extends ContentProvider {
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
+
         switch (matcher.match(uri)){
             case 0:
-                int d1 = db.delete(TABLE_NAME, null, null);
+                int d1 = db.delete(TABLE_NAME, selection, selectionArgs);
                 return d1;
             case 1:
-                int d2 = db.delete(TABLE_NAME, selection, selectionArgs);
+                long id = ContentUris.parseId(uri);
+                int d2 = db.delete(TABLE_NAME, "_id=?", new String[]{id+""});
                 return d2;
+            default:
+                break;
         }
         return 0;
     }
@@ -54,31 +58,29 @@ public class MyContentProvider extends ContentProvider {
        SQLiteDatabase db = dbHelper.getWritableDatabase();
        switch (matcher.match(uri)){
            case 0:
-               db.insert(TABLE_NAME,null,values);
-               return null;
-           case 1:
-               db.insert(TABLE_NAME,null,values);
+               long number = db.insert(TABLE_NAME, null, values);
+               Uri insert_uri = Uri.parse("content://com.example.fourc/person/"+number);
+               return insert_uri;
+           default:
                return null;
        }
-       return null;
     }
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-
         switch (matcher.match(uri)){
             case 0:
-                Cursor cursor = db.query(TABLE_NAME,projection,null,null,null,null,null);
+                Cursor cursor = db.query(TABLE_NAME,projection,selection,selectionArgs,null,null,null);
                 return cursor;
             case 1:
                 long id = ContentUris.parseId(uri);
-                Cursor cursor1 = db.query(TABLE_NAME,projection,selection,selectionArgs,null,null,null);
+                Cursor cursor1 = db.query(TABLE_NAME,projection,"_id=?",new String[]{id+""},null,null,null);
                 return cursor1;
             default:
                 Log.e(TAG, "非法的URI");
-                return null;
+                throw new RuntimeException("dangqian");
         }
 
     }
@@ -89,10 +91,11 @@ public class MyContentProvider extends ContentProvider {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         switch (matcher.match(uri)){
             case 0:
-                int res = db.update(TABLE_NAME, values, null, null);
+                int res = db.update(TABLE_NAME, values, selection, selectionArgs);
                 return res;
             case 1:
-                int res1 = db.update(TABLE_NAME, values, null, null);
+                long id = ContentUris.parseId(uri);
+                int res1 = db.update(TABLE_NAME, values, "_id=?", new String[]{id+""});
                 return res1;
         }
         return 0;

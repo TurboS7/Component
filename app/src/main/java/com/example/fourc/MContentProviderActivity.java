@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -42,6 +43,7 @@ import java.net.URI;
  *         最后就是ID（如果没有指定ID，那么表示返回全部）。
  */
 public class MContentProviderActivity extends AppCompatActivity {
+    private static final String TAG = "MContentProviderActivity：";
     private TextView tv_info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +58,14 @@ public class MContentProviderActivity extends AppCompatActivity {
     public void onQuery1(View view) {
         /*获取ContentResolver*/
         ContentResolver resolver = getContentResolver();
-        /*查询出数据*/
+        /*content://com.example.fourc/person/#*/
+//        Uri uri = Uri.parse("content://com.example.fourc/person/20");
+//        Cursor cursor = resolver.query(uri, null, null ,null, null);
+        /*content://com.example.fourc/person*/
         Uri uri = Uri.parse("content://com.example.fourc/person");
+//        Cursor cursor = resolver.query(uri, null, "_id=?" , new String[]{20+""}, null);
         Cursor cursor = resolver.query(uri, null, null , null, null);
+
         String txt = "";
         while (cursor.moveToNext()){
             int _id = cursor.getInt(0);
@@ -84,26 +91,38 @@ public class MContentProviderActivity extends AppCompatActivity {
         values.put("name","tim");
         values.put("age",12);
         values.put("info","tim is a boy ");
-        resolver.insert(uri, values);
+        Uri uri_res = resolver.insert(uri, values);
+        tv_info.setText("插入的Uri为："+uri_res);
 
     }
     public void onDelete1(View view) {
         ContentResolver resolver = getContentResolver();
         /*删除数据*/
-        Uri uri = Uri.parse("content://com.example.fourc/person");
-        ContentValues values = new ContentValues();
-        resolver.delete(uri,null,null);
+//        Uri uri = Uri.parse("content://com.example.fourc/person");
+//        int delete = resolver.delete(uri, "_id=?", new String[]{"20"});
+//        int delete = resolver.delete(uri, null , null);
+
+        Uri uri = Uri.parse("content://com.example.fourc/person/21");
+        int delete = resolver.delete(uri, null,null);
+        if (delete > 0){
+            Log.i(TAG, "onDelete1: 删除成功");
+        }else {
+            Log.i(TAG, "onDelete1: 删除失败");
+        }
     }
+
     public void onUpdate1(View view) {
         /*获取ContentResolver*/
         ContentResolver resolver = getContentResolver();
-        /*插入数据*/
-        Uri uri = Uri.parse("content://com.example.fourc/person");
         ContentValues values = new ContentValues();
-        values.put("_id",1);
-        values.put("name","tim12");
-        values.put("age",12);
-        values.put("info","tim is a boy ");
+        values.put("name","mok");
+        values.put("age",21);
+        values.put("info","tim is1212 ");
+        /*插入数据*/
+//        Uri uri = Uri.parse("content://com.example.fourc/person");
+//        resolver.update(uri, values,"_id=?",new String[]{"24"});
+//        resolver.update(uri, values,null,null);
+        Uri uri = Uri.parse("content://com.example.fourc/person/25");
         resolver.update(uri, values,null,null);
     }
 
