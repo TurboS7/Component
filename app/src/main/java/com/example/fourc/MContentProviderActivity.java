@@ -19,7 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
  *  删除指定Uri并且符合一定条件的数据。
  *  delete（Uri url, String where, String[] selectionArgs）
  *
- *
  * ContentProvider和ContentResolver中用到的Uri
  *       在ContentProvider和ContentResolver当中用到了Uri的形式通常有两种，一种是指定全部数据，另一种是指定某个ID的数据。
  *      我们看下面的例子。
