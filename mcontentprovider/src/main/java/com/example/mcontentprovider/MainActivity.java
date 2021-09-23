@@ -3,7 +3,7 @@ package com.example.mcontentprovider;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,11 +11,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-
-import com.example.mcontentprovider.R;
-
-import java.net.URI;
 
 /**
  * 内容提供者的demo
@@ -63,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 //        Uri uri = Uri.parse("content://com.example.fourc/person/20");
 //        Cursor cursor = resolver.query(uri, null, null ,null, null);
         /*content://com.example.fourc/person*/
-        Uri uri = Uri.parse("content://com.example.fourc/person");
+        Uri uri = Uri.parse("content://com.example.mcontentprovider/person");
 //        Cursor cursor = resolver.query(uri, null, "_id=?" , new String[]{20+""}, null);
         Cursor cursor = resolver.query(uri, null, null , null, null);
 
@@ -87,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         /*获取ContentResolver*/
         ContentResolver resolver = getContentResolver();
         /*插入数据*/
-        Uri uri = Uri.parse("content://com.example.fourc/person");
+        Uri uri = Uri.parse("content://com.example.mcontentprovider/person");
         ContentValues values = new ContentValues();
         values.put("name","tim");
         values.put("age",12);
@@ -103,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 //        int delete = resolver.delete(uri, "_id=?", new String[]{"20"});
 //        int delete = resolver.delete(uri, null , null);
 
-        Uri uri = Uri.parse("content://com.example.fourc/person/21");
+        Uri uri = Uri.parse("content://com.example.mcontentprovider/person/2");
         int delete = resolver.delete(uri, null,null);
         if (delete > 0){
             Log.i(TAG, "onDelete1: 删除成功");
@@ -123,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 //        Uri uri = Uri.parse("content://com.example.fourc/person");
 //        resolver.update(uri, values,"_id=?",new String[]{"24"});
 //        resolver.update(uri, values,null,null);
-        Uri uri = Uri.parse("content://com.example.fourc/person/25");
+        Uri uri = Uri.parse("content://com.example.mcontentprovider/person/25");
         resolver.update(uri, values,null,null);
     }
 
