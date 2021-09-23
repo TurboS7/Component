@@ -10,7 +10,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/mbroadcastreceiver" />
+            <option value="$PROJECT_DIR$/mcontentprovider" />
+            <option value="$PROJECT_DIR$/msharedpreferences" />
+            <option value="$PROJECT_DIR$/msqllite" />
+            <option value="$PROJECT_DIR$/mysyscontentprovider" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

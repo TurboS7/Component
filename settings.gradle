@@ -1,2 +1,6 @@
 rootProject.name = "FourC"
-include ':app'
+include ':msharedpreferences'
+include ':mbroadcastreceiver'
+include ':mcontentprovider'
+include ':mysyscontentprovider'
+include ':msqllite'

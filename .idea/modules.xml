@@ -3,7 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/FourC.iml" filepath="$PROJECT_DIR$/.idea/modules/FourC.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FourC.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FourC.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mbroadcastreceiver/FourC.mbroadcastreceiver.iml" filepath="$PROJECT_DIR$/.idea/modules/mbroadcastreceiver/FourC.mbroadcastreceiver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mcontentprovider/FourC.mcontentprovider.iml" filepath="$PROJECT_DIR$/.idea/modules/mcontentprovider/FourC.mcontentprovider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FourC.msharedpreferences.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FourC.msharedpreferences.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/msqllite/FourC.msqllite.iml" filepath="$PROJECT_DIR$/.idea/modules/msqllite/FourC.msqllite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mysyscontentprovider/FourC.mysyscontentprovider.iml" filepath="$PROJECT_DIR$/.idea/modules/mysyscontentprovider/FourC.mysyscontentprovider.iml" />
     </modules>
   </component>
 </project>
