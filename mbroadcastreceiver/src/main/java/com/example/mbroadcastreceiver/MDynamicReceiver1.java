@@ -11,9 +11,6 @@ public class MDynamicReceiver1 extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Toast.makeText(context, "MDynamicReceiver1收到："+intent.getStringExtra("msg").toString(), Toast.LENGTH_SHORT).show();
-        try {
-            abortBroadcast();
-        } catch (Exception e) {
-        }
+        abortBroadcast();
     }
 }

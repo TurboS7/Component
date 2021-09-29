@@ -15,18 +15,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        init();
-    }
-
-    private void init() {
-        receiver = new MDynamicReceiver();
-        receiver1 = new MDynamicReceiver1();
-        IntentFilter intentFilter = new IntentFilter("dynamic");
-        IntentFilter intentFilter1 = new IntentFilter("dynamic");
-        intentFilter.setPriority(100);
-        intentFilter1.setPriority(900);
-        registerReceiver(receiver,intentFilter);
-        registerReceiver(receiver1,intentFilter1);
     }
     /*发送无序广播（动态注册）*/
     public void onDisOrderBrocast(View view) {
@@ -48,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("发送有序广播（静态注册）");
         Intent intent = new Intent();
         intent.setAction("com.zs.staticreceiver");
+        /*8.0新增的静态注册方法*/
         intent.setComponent(new ComponentName(MainActivity.this,MStaticReceiver.class));//显示指定组件名称
 //        intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
         sendOrderedBroadcast(intent,null);
@@ -57,9 +46,25 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("发送无序广播（静态注册）");
         Intent intent = new Intent();
         intent.setAction("com.zs.staticreceiver");
+        /*8.0新增的静态注册方法*/
         intent.setComponent(new ComponentName(MainActivity.this,MStaticReceiver1.class));//显示指定组件名称
 //        intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
         sendBroadcast(intent);
     }
-
+        /*注册广播*/
+    public void onRegistReciver(View view) {
+        receiver = new MDynamicReceiver();
+        receiver1 = new MDynamicReceiver1();
+        IntentFilter intentFilter = new IntentFilter("dynamic");
+        IntentFilter intentFilter1 = new IntentFilter("dynamic");
+        intentFilter.setPriority(100);
+        intentFilter1.setPriority(900);
+        registerReceiver(receiver,intentFilter);
+        registerReceiver(receiver1,intentFilter1);
+    }
+        /*注销广播*/
+    public void onDisRegistReciver(View view) {
+        unregisterReceiver(receiver);
+        unregisterReceiver(receiver1);
+    }
 }
