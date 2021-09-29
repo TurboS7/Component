@@ -16,6 +16,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".MStaticReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter
+                android:priority="900">
+                <action android:name="com.zs.staticreceiver"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".MStaticReceiver1"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter
+                android:priority="100">
+                <action android:name="com.zs.staticreceiver"/>
+            </intent-filter>
+        </receiver>
     </application>
-
 </manifest>

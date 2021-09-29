@@ -9,12 +9,30 @@
 
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button"
-        android:onClick="click"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="198dp" />
+        android:onClick="onDisOrderBrocast"
+        android:text="发送无序广播（动态注册）" />
 
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onOrderBrocast"
+        android:text="发送有序广播（动态注册）" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onDisOrderBrocast1"
+        android:text="发送无序广播（静态注册）" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onOrderBrocast1"
+        android:text="发送有序广播（静态注册）" />
 </LinearLayout>
