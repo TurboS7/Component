@@ -43,18 +43,22 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("msg","来自MainActivity动态注册的有序广播");
         sendOrderedBroadcast(intent,null);
     }
-
+    /*发送有序广播（静态注册）*/
     public void onOrderBrocast1(View view) {
+        System.out.println("发送有序广播（静态注册）");
         Intent intent = new Intent();
         intent.setAction("com.zs.staticreceiver");
-        intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+        intent.setComponent(new ComponentName(MainActivity.this,MStaticReceiver.class));//显示指定组件名称
+//        intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
         sendOrderedBroadcast(intent,null);
     }
 
     public void onDisOrderBrocast1(View view) {
+        System.out.println("发送无序广播（静态注册）");
         Intent intent = new Intent();
         intent.setAction("com.zs.staticreceiver");
-        intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+        intent.setComponent(new ComponentName(MainActivity.this,MStaticReceiver1.class));//显示指定组件名称
+//        intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
         sendBroadcast(intent);
     }
 

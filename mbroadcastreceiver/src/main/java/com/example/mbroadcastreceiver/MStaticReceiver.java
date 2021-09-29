@@ -11,6 +11,7 @@ public class MStaticReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Log.i("MStaticBroadCastReceiver", "onReceive: ");
         Toast.makeText(context, "收到了静态注册的广播！", Toast.LENGTH_SHORT).show();
+        abortBroadcast();
     }
 
 

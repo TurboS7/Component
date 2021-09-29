@@ -32,7 +32,14 @@
     <Button
         android:id="@+id/button4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:onClick="onOrderBrocast1"
         android:text="发送有序广播（静态注册）" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
 </LinearLayout>
