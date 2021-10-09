@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/mbroadcastreceiver" />
             <option value="$PROJECT_DIR$/mcontentprovider" />
+            <option value="$PROJECT_DIR$/mservice" />
             <option value="$PROJECT_DIR$/msharedpreferences" />
             <option value="$PROJECT_DIR$/msqllite" />
             <option value="$PROJECT_DIR$/mysyscontentprovider" />

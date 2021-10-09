@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/FourC.iml" filepath="$PROJECT_DIR$/FourC.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/mbroadcastreceiver/FourC.mbroadcastreceiver.iml" filepath="$PROJECT_DIR$/.idea/modules/mbroadcastreceiver/FourC.mbroadcastreceiver.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/mcontentprovider/FourC.mcontentprovider.iml" filepath="$PROJECT_DIR$/.idea/modules/mcontentprovider/FourC.mcontentprovider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mservice/FourC.mservice.iml" filepath="$PROJECT_DIR$/.idea/modules/mservice/FourC.mservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/msharedpreferences/FourC.msharedpreferences.iml" filepath="$PROJECT_DIR$/.idea/modules/msharedpreferences/FourC.msharedpreferences.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/msqllite/FourC.msqllite.iml" filepath="$PROJECT_DIR$/.idea/modules/msqllite/FourC.msqllite.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/mysyscontentprovider/FourC.mysyscontentprovider.iml" filepath="$PROJECT_DIR$/.idea/modules/mysyscontentprovider/FourC.mysyscontentprovider.iml" />
